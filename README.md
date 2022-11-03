@@ -30,3 +30,4 @@ body
 Resolve a atividade 3
 
 OBS.: Para testar as atividades 2 e 3. Será necessário já ter um cliente cadastrado no banco.
+OBS.2: Lembrar de atualizar a rota, o nome do banco e o login/senha para o banco em sua máquina.
