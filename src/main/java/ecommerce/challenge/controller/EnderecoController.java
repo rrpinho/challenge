@@ -1,9 +1,9 @@
 package ecommerce.challenge.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ecommerce.challenge.dto.EmailCepResponse;
+import ecommerce.challenge.dto.EmailResponse;
 import ecommerce.challenge.dto.EnderecoResponse;
 import ecommerce.challenge.model.Endereco;
 import ecommerce.challenge.repository.EnderecoRepository;
@@ -16,10 +16,11 @@ import java.net.URLConnection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class EnderecoController {
@@ -49,12 +50,22 @@ public class EnderecoController {
         return endereco;
     }
 
-    @GetMapping("/email/{email}/cep/{cep}")
-    public Integer getIdClienteComEmail(@PathVariable("email") String email, @PathVariable("cep") String cep) throws Exception{
-        int id = enderecoRepository.getIdClienteComEmail(email);
+    @PostMapping("/cep")
+    public void setEnderecoComEmail(@RequestBody EmailCepResponse emailCepResponse) throws Exception{
 
-        Endereco endereco = getCep(cep);
-        enderecoRepository.setEndereco(id, endereco);
-        return id;
+        enderecoRepository.setEnderecoComEmail(enderecoRepository.getIdClienteComEmail(emailCepResponse.getEmail()), getCep(emailCepResponse.getCep()));
+
+    }
+
+    @PostMapping("/email")
+    public List<Endereco> getClienteEnderecos(@RequestBody EmailResponse emailResponse) throws Exception {
+        
+        String email = emailResponse.getEmail();
+
+        int id = enderecoRepository.getIdClienteComEmail(email);
+        
+        List<Endereco> enderecos = enderecoRepository.getClienteEnderecos(id);
+
+        return enderecos;
     }
 }

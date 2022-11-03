@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "7b6ca094-5a11-4d85-bb7d-84672b4f4295",
+		"name": "ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12684755"
+	},
+	"item": [
+		{
+			"name": "getCep",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getCep/41830001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getCep",
+						"41830001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setEnderecoComEmail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"teste@teste.com\",\r\n    \"cep\":\"41830001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cep",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cep"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getClienteEnderecos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"teste@teste.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"email"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
