@@ -3,7 +3,6 @@ package ecommerce.challenge.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ecommerce.challenge.dto.EmailCepResponse;
-import ecommerce.challenge.dto.EmailResponse;
 import ecommerce.challenge.dto.EnderecoResponse;
 import ecommerce.challenge.model.Endereco;
 import ecommerce.challenge.repository.EnderecoRepository;
@@ -28,6 +27,7 @@ public class EnderecoController {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    //Usei o metodo Get apenas pra demonstrar domínio deste método.
     @GetMapping("/getCep/{cep}")
     public Endereco getCep(@PathVariable("cep") String cep) throws Exception {
             
@@ -52,15 +52,15 @@ public class EnderecoController {
 
     @PostMapping("/cep")
     public void setEnderecoComEmail(@RequestBody EmailCepResponse emailCepResponse) throws Exception{
-
+        //Método mais enxuto propositalmente.
         enderecoRepository.setEnderecoComEmail(enderecoRepository.getIdClienteComEmail(emailCepResponse.getEmail()), getCep(emailCepResponse.getCep()));
 
     }
 
     @PostMapping("/email")
-    public List<Endereco> getClienteEnderecos(@RequestBody EmailResponse emailResponse) throws Exception {
-        
-        String email = emailResponse.getEmail();
+    public List<Endereco> getClienteEnderecos(@RequestBody EmailCepResponse emailCepResponse) throws Exception {
+        //Método mais detalhado propositalmente.
+        String email = emailCepResponse.getEmail();
 
         int id = enderecoRepository.getIdClienteComEmail(email);
         

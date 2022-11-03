@@ -27,7 +27,7 @@ public class EnderecoRepository{
     }
 
     public List<Endereco> getClienteEnderecos(int id){
-        String query = "select * from endereco where intIdCliente = "+id+";";
+        String query = "SELECT * FROM endereco WHERE intIdCliente = "+id+";";
         
         List<Endereco> enderecos = new ArrayList<>();
         List<Map<String, Object>> linhas = jdbcTemplate.queryForList(query);
