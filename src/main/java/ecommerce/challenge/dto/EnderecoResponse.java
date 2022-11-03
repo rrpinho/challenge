@@ -18,11 +18,11 @@ public class EnderecoResponse {
     public Endereco converter(){
         Endereco endereco = new Endereco();
         endereco.setCep(getCep());
-        endereco.setLogradouro(getLogradouro());
+        endereco.setRua(getLogradouro());
         endereco.setComplemento(getComplemento());
         endereco.setBairro(getBairro());
-        endereco.setLocalidade(getLocalidade());
-        endereco.setUf(getUf());
+        endereco.setCidade(getLocalidade());
+        endereco.setEstado(getUf());
         return endereco;
     }
 
